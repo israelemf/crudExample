@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using CRUD.Data;
 
 namespace CRUD
 {
@@ -24,6 +26,10 @@ namespace CRUD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<CRUDContext>(options =>
+                    options.UseMySql(Configuration.GetConnectionString("CRUDContext"), new MySqlServerVersion(new Version()), builder 
+                    => builder.MigrationsAssembly("CRUD")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
