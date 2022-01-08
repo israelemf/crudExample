@@ -1,35 +1,59 @@
-﻿@model IEnumerable<CRUD.Models.Department>
+﻿@model X.PagedList.IPagedList<CRUD.Models.Department>
+@using X.PagedList.Mvc.Core;
+<link rel="stylesheet" href="~/css/pagedList.css" />
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Departamentos";
 }
 
-<h1>Create Department</h1>
+<h2>Departamentos</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@using (Html.BeginForm("Index", "Departments", FormMethod.Get))
+{
+    <p>
+        Pesquisar Nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Procurar" />
+    </p>
+
+}
+
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayName("Nome")
             </th>
             <th></th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Name }) |
+                    @Html.ActionLink("Detalhes", "Edit", new { id = item.Name }) |
+                    @Html.ActionLink("Deletar", "Edit", new { id = item.Name })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@if (Model.PageCount != 1)
+{
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+}
+
+<br>
+<br>
+<h4> @Html.ActionLink("Criar novo Departamento", "Create") </h4>
+

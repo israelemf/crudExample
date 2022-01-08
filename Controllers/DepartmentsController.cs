@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CRUD.Data;
 using CRUD.Models;
+using X.PagedList;
 
 namespace CRUD.Controllers
 {
@@ -20,9 +18,45 @@ namespace CRUD.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Department.ToListAsync());
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "Name" : "";
+
+            if(searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var departments = from d in _context.Department
+                              select d;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                departments = departments.Where(d => d.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    departments = departments.OrderByDescending(d => d.Name);
+                    break;
+
+                default:
+                    departments = departments.OrderBy(d => d.Name);
+                    break;
+            }
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(departments.ToPagedList(pageNumber, pageSize));
+            //
         }
 
         // GET: Departments/Details/5
