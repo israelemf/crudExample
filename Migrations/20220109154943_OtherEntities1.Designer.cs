@@ -3,14 +3,16 @@ using System;
 using CRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CRUD.Migrations
 {
     [DbContext(typeof(CRUDContext))]
-    partial class CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20220109154943_OtherEntities1")]
+    partial class OtherEntities1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +71,7 @@ namespace CRUD.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -103,9 +105,7 @@ namespace CRUD.Migrations
                 {
                     b.HasOne("CRUD.Models.Department", "Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.Navigation("Department");
                 });

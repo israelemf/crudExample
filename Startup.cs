@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.EntityFrameworkCore;
 using CRUD.Data;
+using CRUD.Services;
 
 namespace CRUD
 {
@@ -29,6 +30,8 @@ namespace CRUD
 
             //registrando serviço seeding
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

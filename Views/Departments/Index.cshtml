@@ -8,6 +8,8 @@
 
 <h2>Departamentos</h2>
 
+<br>
+
 @using (Html.BeginForm("Index", "Departments", FormMethod.Get))
 {
     <p>
@@ -20,7 +22,6 @@
 <table class="table">
     <thead>
         <tr>
-
             <th>
                 @Html.DisplayName("Nome")
             </th>
@@ -44,16 +45,15 @@
         }
     </tbody>
 </table>
+<div>
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    @if (Model.PageCount != 1)
+    {
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    }
+</div>
 
-@if (Model.PageCount != 1)
-{
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-}
-
-<br>
-<br>
-<h4> @Html.ActionLink("Criar novo Departamento", "Create") </h4>
+<a asp-action="Create" class="btn btn-primary">Criar Departamento</a>
 

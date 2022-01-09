@@ -1,9 +1,7 @@
 ﻿using CRUD.Models;
 using CRUD.Models.Enums;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CRUD.Data
 {
@@ -30,14 +28,14 @@ namespace CRUD.Data
             Department d4 = new Department(4, "Fashion");
             Department d5 = new Department(5, "Perfumaria");
 
-            Seller s1 = new Seller(1, "Bob Brown", "bob@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
-            Seller s2 = new Seller(2, "Bob Brown", "bob1@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
-            Seller s3 = new Seller(3, "Maria Green", "maria@gmail.com", new DateTime(1979, 12, 31), 3500.0, d2);
-            Seller s4 = new Seller(4, "Alex Grey", "alex@gmail.com", new DateTime(1988, 1, 15), 2200.0, d1);
-            Seller s5 = new Seller(5, "Martha Red", "martha@gmail.com", new DateTime(1993, 11, 30), 3000.0, d4);
-            Seller s6 = new Seller(6, "Donald Blue", "donald@gmail.com", new DateTime(2000, 1, 9), 4000.0, d3);
-            Seller s7 = new Seller(7, "Alex Pink", "pink@gmail.com", new DateTime(1997, 3, 4), 3000.0, d2);
-            Seller s8 = new Seller(8, "Ze do Sabara", "ze@gmail.com", new DateTime(1970, 3, 4), 2000.0, d5);
+            Seller s1 = new Seller(1, "Bob", "Brown", "bob@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
+            Seller s2 = new Seller(2, "Bob", "Brown", "bob1@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
+            Seller s3 = new Seller(3, "Maria", "Green", "maria@gmail.com", new DateTime(1979, 12, 31), 3500.0, d2);
+            Seller s4 = new Seller(4, "Alex", "Grey", "alex@gmail.com", new DateTime(1988, 1, 15), 2200.0, d1);
+            Seller s5 = new Seller(5, "Martha", "Red", "martha@gmail.com", new DateTime(1993, 11, 30), 3000.0, d4);
+            Seller s6 = new Seller(6, "Donald", "Blue", "donald@gmail.com", new DateTime(2000, 1, 9), 4000.0, d3);
+            Seller s7 = new Seller(7, "Alex", "Pink", "pink@gmail.com", new DateTime(1997, 3, 4), 3000.0, d2);
+            Seller s8 = new Seller(8, "Ze", "do Sabara", "ze@gmail.com", new DateTime(1970, 3, 4), 2000.0, d5);
 
 
             SalesRecord r1 = new SalesRecord(1, new DateTime(2018, 09, 25), 11000.0, SaleStatus.Billed, s1);

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -9,8 +9,8 @@ namespace CRUD.Models
     public class Department
     {
         public int Id { get; set; }
-        [RegularExpression("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", ErrorMessage = "Erro: O Campo Nome apenas pode conter letras.")]
         [Required(ErrorMessage = "O Campo Nome é obrigatório.")]
+        [DisplayName("Nome")]
         public string Name { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 

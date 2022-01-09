@@ -25,7 +25,7 @@ namespace CRUD.Controllers
             ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "Name" : "";
 
             //método para paginação do index do department
-            if(searchString != null)
+            if (searchString != null)
             {
                 page = 1;
             }
@@ -44,23 +44,13 @@ namespace CRUD.Controllers
                 departments = departments.Where(d => d.Name.Contains(searchString));
             }
 
-            //ordenando nomes em ascendente na index do department
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    departments = departments.OrderByDescending(d => d.Name);
-                    break;
+            //ordenando nomes na index do department
+            departments = departments.OrderBy(d => d.Name);
 
-                default:
-                    departments = departments.OrderBy(d => d.Name);
-                    break;
-            }
-
-           
-            int pageSize = 6;  //limite de linhas em cada página
+            int pageSize = 10;  //limite de linhas em cada página
             int pageNumber = (page ?? 1);
             return View(departments.ToPagedList(pageNumber, pageSize));
-            
+
         }
 
         // GET: Departments/Details/5

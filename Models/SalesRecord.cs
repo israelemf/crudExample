@@ -1,6 +1,5 @@
 ﻿using CRUD.Models.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace CRUD.Models
 {

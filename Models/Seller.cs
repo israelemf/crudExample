@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -9,23 +10,34 @@ namespace CRUD.Models
 
     {
         public int Id { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
         [Required]
+        [DisplayName("Nome")]
         public string Name { get; set; }
+        [Required]
+        [DisplayName("Sobrenome")]
+        public string SurName { get; set; }
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido.")]
         public string Email { get; set; }
+        [DisplayName("Aniversário")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime BirthDate { get; set; }
+        [DisplayName("Salário")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double BaseSalary { get; set; }
+        [DisplayName("Departamento")]
         public Department Department { get; set; }
+        public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
         {
         }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department)
+        public Seller(int id, string name, string surname, string email, DateTime birthDate, double baseSalary, Department department)
         {
             Id = id;
             Name = name;
+            SurName = surname;
             Email = email;
             BirthDate = birthDate;
             BaseSalary = baseSalary;
