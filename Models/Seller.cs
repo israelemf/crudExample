@@ -10,20 +10,24 @@ namespace CRUD.Models
 
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} é obrigatório.")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres.")]
         [DisplayName("Nome")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} é obrigatório.")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres.")]
         [DisplayName("Sobrenome")]
         public string SurName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "{0} é obrigatório.")]
+        [EmailAddress(ErrorMessage = "Informe um email válido.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [DisplayName("Aniversário")]
+        [Required(ErrorMessage = "{0} é obrigatório.")]
         [DataType(DataType.Date)]
+        [DisplayName("Data de Aniversário")]
         public DateTime BirthDate { get; set; }
+        [Required(ErrorMessage = "{0} é obrigatório.")]
         [DisplayName("Salário")]
-        [DisplayFormat(DataFormatString = "{0:C}")]
         public double BaseSalary { get; set; }
         [DisplayName("Departamento")]
         public Department Department { get; set; }

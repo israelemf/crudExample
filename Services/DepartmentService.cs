@@ -1,7 +1,9 @@
 ﻿using CRUD.Data;
 using CRUD.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CRUD.Services
 {
@@ -14,9 +16,9 @@ namespace CRUD.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(d => d.Name).ToList();
+            return await _context.Department.OrderBy(d => d.Name).ToListAsync();
         }
     }
 }
