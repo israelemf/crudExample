@@ -43,6 +43,22 @@ namespace CRUD.Controllers
             return View(seller);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
