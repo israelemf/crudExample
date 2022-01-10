@@ -16,10 +16,11 @@ namespace CRUD.Models
         [Required]
         [DisplayName("Sobrenome")]
         public string SurName { get; set; }
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido.")]
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DisplayName("Aniversário")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         [DisplayName("Salário")]
         [DisplayFormat(DataFormatString = "{0:C}")]
