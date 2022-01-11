@@ -23,6 +23,7 @@ namespace CRUD.Controllers
 
         public async Task<IActionResult> Index(int? page)
         {
+
             var list = await _sellerService.FindAllAsync();
             return View(list);
         }

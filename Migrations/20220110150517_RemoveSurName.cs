@@ -6,10 +6,6 @@ namespace CRUD.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "SurName",
-                table: "Seller");
-
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Seller",

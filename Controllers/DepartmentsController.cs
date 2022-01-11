@@ -21,9 +21,6 @@ namespace CRUD.Controllers
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "Name" : "";
-
             //método para paginação do index do department
             if (searchString != null)
             {
