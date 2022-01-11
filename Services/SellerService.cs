@@ -3,8 +3,8 @@ using CRUD.Models;
 using CRUD.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD.Services
 {
@@ -40,7 +40,7 @@ namespace CRUD.Services
                 _context.Seller.Remove(obj);
                 await _context.SaveChangesAsync();
             }
-            catch(DbUpdateException e)
+            catch (DbUpdateException e)
             {
                 throw new IntegrityException("Can't delete seller because he/she has sales");
             }

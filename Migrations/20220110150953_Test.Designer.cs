@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD.Migrations
 {
     [DbContext(typeof(CRUDContext))]
-    [Migration("20220109154943_OtherEntities1")]
-    partial class OtherEntities1
+    [Migration("20220110150953_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,19 +71,17 @@ namespace CRUD.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("DepartmentId")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)");
 
                     b.HasKey("Id");
 
@@ -105,7 +103,9 @@ namespace CRUD.Migrations
                 {
                     b.HasOne("CRUD.Models.Department", "Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
                 });

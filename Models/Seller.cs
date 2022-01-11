@@ -11,13 +11,9 @@ namespace CRUD.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "{0} é obrigatório.")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres.")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres.")]
         [DisplayName("Nome")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "{0} é obrigatório.")]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres.")]
-        [DisplayName("Sobrenome")]
-        public string SurName { get; set; }
         [Required(ErrorMessage = "{0} é obrigatório.")]
         [EmailAddress(ErrorMessage = "Informe um email válido.")]
         [DataType(DataType.EmailAddress)]
@@ -38,11 +34,10 @@ namespace CRUD.Models
         {
         }
 
-        public Seller(int id, string name, string surname, string email, DateTime birthDate, double baseSalary, Department department)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department)
         {
             Id = id;
             Name = name;
-            SurName = surname;
             Email = email;
             BirthDate = birthDate;
             BaseSalary = baseSalary;

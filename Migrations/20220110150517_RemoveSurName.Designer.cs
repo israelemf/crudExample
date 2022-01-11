@@ -3,14 +3,16 @@ using System;
 using CRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CRUD.Migrations
 {
     [DbContext(typeof(CRUDContext))]
-    partial class CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20220110150517_RemoveSurName")]
+    partial class RemoveSurName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

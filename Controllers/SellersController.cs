@@ -21,7 +21,7 @@ namespace CRUD.Controllers
             _departmentService = departmentService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
             var list = await _sellerService.FindAllAsync();
             return View(list);
