@@ -25,6 +25,7 @@ namespace CRUD.Models
         [DisplayName("Data de Aniversário")]
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = "{0} é obrigatório.")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [DisplayName("Salário")]
         public double BaseSalary { get; set; }
         [DisplayName("Departamento")]

@@ -1,6 +1,7 @@
 ﻿using CRUD.Models.Enums;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUD.Models
 {
@@ -10,6 +11,7 @@ namespace CRUD.Models
         [DisplayName("Data")]
         public DateTime Date { get; set; }
         [DisplayName("Valor")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Amount { get; set; }
         public SaleStatus Status { get; set; }
         [DisplayName("Vendedor")]
